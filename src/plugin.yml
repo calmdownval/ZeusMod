@@ -1,0 +1,7 @@
+name: ZeusMod
+main: com.sunkenbridge.val.ZeusMod.ZeusModPlugin
+version: 1.2.2
+commands:
+  zspeed:
+    description: Sets the walk/fly speed when holding golden boots.
+    usage: /<command> <walk> <fly>

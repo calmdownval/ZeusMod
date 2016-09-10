@@ -1,0 +1,4 @@
+# The item that when held in hand activates ZeusMod features
+# It should not be a placeable block.
+# default: 317 (golden_boots)
+control: 317
