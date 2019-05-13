@@ -1,4 +1,7 @@
-# The item that when held in hand activates ZeusMod features
+# The item which when held in hand activates ZeusMod features
 # It should not be a placeable block.
-# default: 317 (golden_boots)
-control: 317
+# default: GOLD_SWORD
+control:
+  ==: org.bukkit.inventory.ItemStack
+  type: GOLD_SWORD
+  amount: 1
