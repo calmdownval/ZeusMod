@@ -9,22 +9,32 @@ public class SpeedPreset
 	private boolean isActive = false;
 
 	private float
-		walkSpeed = 0.2f,
-		zeusWalkSpeed = 0.4f,
-		flySpeed = 0.1f,
-		zeusFlySpeed = 0.4f;
+		walkSpeed,
+		zeusWalkSpeed,
+		flySpeed,
+		zeusFlySpeed;
 
 
 	public SpeedPreset(Player player)
 	{
 		this.player = player;
-		walkSpeed = player.getWalkSpeed();
-		flySpeed = player.getFlySpeed();
+		reset();
 	}
 
 	public Player getPlayer()
 	{
 		return player;
+	}
+
+	public void reset()
+	{
+		walkSpeed = 0.2f;
+		zeusWalkSpeed = 0.4f;
+		flySpeed = 0.2f;
+		zeusFlySpeed = 0.4f;
+
+		player.setWalkSpeed(zeusWalkSpeed);
+		player.setFlySpeed(zeusFlySpeed);
 	}
 
 	public void setZeusWalkSpeed(float speed)
