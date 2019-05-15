@@ -2,11 +2,11 @@ package fit.seems.mc.zeusmod;
 
 import org.bukkit.entity.Player;
 
-public class SpeedPreset
+public class PlayerPreset
 {
 	private Player player;
 
-	private boolean isActive = false;
+	private boolean active = false;
 
 	private float
 		walkSpeed,
@@ -15,7 +15,7 @@ public class SpeedPreset
 		zeusFlySpeed;
 
 
-	public SpeedPreset(Player player)
+	public PlayerPreset(Player player)
 	{
 		this.player = player;
 		reset();
@@ -24,6 +24,11 @@ public class SpeedPreset
 	public Player getPlayer()
 	{
 		return player;
+	}
+
+	public boolean isActive()
+	{
+		return active;
 	}
 
 	public void reset()
@@ -40,7 +45,7 @@ public class SpeedPreset
 	public void setZeusWalkSpeed(float speed)
 	{
 		zeusWalkSpeed = speed;
-		if (isActive)
+		if (active)
 		{
 			player.setWalkSpeed(speed);
 		}
@@ -49,7 +54,7 @@ public class SpeedPreset
 	public void setZeusFlySpeed(float speed)
 	{
 		zeusFlySpeed = speed;
-		if (isActive)
+		if (active)
 		{
 			player.setFlySpeed(speed);
 		}
@@ -63,7 +68,7 @@ public class SpeedPreset
 		player.setFlySpeed(
 			Math.max(player.getFlySpeed(), zeusFlySpeed));
 
-		isActive = true;
+		active = true;
 	}
 
 	public void deactivate()
@@ -74,6 +79,6 @@ public class SpeedPreset
 		player.setFlySpeed(
 			Math.min(player.getFlySpeed(), flySpeed));
 
-		isActive = false;
+		active = false;
 	}
 }

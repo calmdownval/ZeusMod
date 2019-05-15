@@ -29,7 +29,7 @@ public class ResetCommandExecutor implements CommandExecutor
 			return false;
 		}
 
-		SpeedPreset preset = plugin.getPreset((Player)sender);
+		PlayerPreset preset = plugin.getPreset((Player)sender);
 		if (preset != null)
 		{
 			preset.reset();

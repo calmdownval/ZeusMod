@@ -16,9 +16,9 @@ public final class ZeusModPlugin extends JavaPlugin
 {
 	private Material controlItem = Material.GOLDEN_SWORD;
 
-	private HashMap<Player, SpeedPreset> speedPresets = new HashMap<Player, SpeedPreset>();
+	private HashMap<Player, PlayerPreset> presets = new HashMap<Player, PlayerPreset>();
 
-	private HashSet<SpeedPreset> active = new HashSet<SpeedPreset>();
+	private HashSet<PlayerPreset> active = new HashSet<PlayerPreset>();
 
 	private int taskId = -1;
 
@@ -37,6 +37,7 @@ public final class ZeusModPlugin extends JavaPlugin
 
 		// subscribe events
 		new ItemInHandListener(this);
+		new HarmListener(this);
 
 		// bind commands
 		new SpeedCommandExecutor(this);
@@ -48,7 +49,7 @@ public final class ZeusModPlugin extends JavaPlugin
 			@Override
 			public void run()
 			{
-				for (SpeedPreset preset : active)
+				for (PlayerPreset preset : active)
 				{
 					update(preset, null);
 				}
@@ -71,18 +72,18 @@ public final class ZeusModPlugin extends JavaPlugin
 		getServer().getScheduler().cancelTask(taskId);
 	}
 
-	public SpeedPreset getPreset(Player player)
+	public PlayerPreset getPreset(Player player)
 	{
 		if (!player.isOp())
 		{
 			return null;
 		}
 
-		SpeedPreset preset = speedPresets.get(player);
+		PlayerPreset preset = presets.get(player);
 		if (preset == null)
 		{
-			preset = new SpeedPreset(player);
-			speedPresets.put(player, preset);
+			preset = new PlayerPreset(player);
+			presets.put(player, preset);
 		}
 
 		return preset;
@@ -90,7 +91,7 @@ public final class ZeusModPlugin extends JavaPlugin
 
 	public void update(Player player, ItemStack stack)
 	{
-		SpeedPreset preset = getPreset(player);
+		PlayerPreset preset = getPreset(player);
 		if (preset != null)
 		{
 			update(preset, stack);
@@ -109,7 +110,7 @@ public final class ZeusModPlugin extends JavaPlugin
 		}, 1L);
 	}
 
-	private void update(SpeedPreset preset, ItemStack stack)
+	private void update(PlayerPreset preset, ItemStack stack)
 	{
 		if (stack == null)
 		{
