@@ -6,7 +6,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Player;
-import org.bukkit.event.entity.EntityDamageByBlockEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -39,7 +39,7 @@ public class InteractionListener implements Listener {
 	}
 
 	@EventHandler
-	public void onEntityDamageByBlockEvent(EntityDamageByBlockEvent event) {
+	public void onEntityDamageEvent(EntityDamageEvent event) {
 		Entity victim = event.getEntity();
 		if (victim instanceof Player && plugin.verify((Player)victim)) {
 			event.setDamage(0D);
