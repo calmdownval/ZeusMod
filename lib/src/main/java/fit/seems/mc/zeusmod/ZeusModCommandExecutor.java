@@ -3,6 +3,7 @@ package fit.seems.mc.zeusmod;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
 
 public class ZeusModCommandExecutor implements CommandExecutor {
@@ -10,7 +11,10 @@ public class ZeusModCommandExecutor implements CommandExecutor {
 
 	public ZeusModCommandExecutor(ZeusModPlugin plugin) {
 		this.plugin = plugin;
-		plugin.getCommand("zeus").setExecutor(this);
+
+		PluginCommand command = plugin.getCommand("zeus");
+		command.setTabCompleter(new ZeusModTabCompleter());
+		command.setExecutor(this);
 	}
 
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -54,7 +58,7 @@ public class ZeusModCommandExecutor implements CommandExecutor {
 
 				case "sunny": {
 					boolean isSunny = preset.toggleSunny();
-					ZeusModPlugin.sendFormattedMessage(sender, "weather toggled to " + (isSunny ? "always sunny" : "world"));
+					ZeusModPlugin.sendFormattedMessage(sender, "weather toggled " + (isSunny ? "to always sunny" : "back to world"));
 					break;
 				}
 
