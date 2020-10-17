@@ -73,6 +73,7 @@ public class InteractionListener implements Listener {
 			case LEFT_CLICK_AIR:
 			case LEFT_CLICK_BLOCK:
 				if (player.hasPermission(ZeusModPlugin.P_STRIKE)) {
+					event.setCancelled(true);
 					strikeArea(player);
 				}
 				break;
@@ -85,6 +86,7 @@ public class InteractionListener implements Listener {
 
 			case RIGHT_CLICK_AIR:
 				if (player.hasPermission(ZeusModPlugin.P_BLINK)) {
+					event.setCancelled(true);
 					blink(player);
 				}
 				break;
