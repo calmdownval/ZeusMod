@@ -1,13 +1,14 @@
 package fit.seems.mc.zeusmod;
 
+import com.google.common.base.Enums;
+import com.google.common.base.Optional;
+
 import java.util.HashMap;
 import java.util.HashSet;
-import org.bukkit.command.PluginCommand;
-import org.bukkit.command.Command;
+
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.Material;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -32,7 +33,7 @@ public final class ZeusModPlugin extends JavaPlugin {
 
 	private double
 		strikeRadius = 6D,
-		strikeKnockBack = 2.5D;
+		strikeKnockBack = 1.3D;
 
 	private boolean
 		strikeLightning = true;
@@ -47,10 +48,12 @@ public final class ZeusModPlugin extends JavaPlugin {
 		FileConfiguration config = getConfig();
 
 		// read the configuration
-		long pollInterval = config.getLong("pollInterval", 10L);
-		ItemStack stack = config.getItemStack("control");
-		if (stack != null) {
-			controlItemType = stack.getType();
+		Optional<Material> itemType = Enums.getIfPresent(
+			Material.class,
+			config.getString("control", controlItemType.toString()));
+
+		if (itemType.isPresent()) {
+			controlItemType = itemType.get();
 		}
 
 		strikeRadius = config.getDouble("strikeRadius", strikeRadius);
@@ -65,6 +68,7 @@ public final class ZeusModPlugin extends JavaPlugin {
 		new ZeusModCommandExecutor(this);
 
 		// start the deactivation polling loop
+		long pollInterval = config.getLong("pollInterval", 10L);
 		new BukkitRunnable() {
 			@Override
 			public void run() {

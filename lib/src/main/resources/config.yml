@@ -1,9 +1,6 @@
-# Activation item, should not be a placeable block
-# default: GOLD_SWORD
-control:
-  ==: org.bukkit.inventory.ItemStack
-  type: GOLD_SWORD
-  amount: 1
+# Activation item, should be a tool to support all interactions
+# default: GOLDEN_SWORD
+control: GOLDEN_SWORD
 
 # How many ticks to wait between polling updates
 # default: 10
@@ -14,8 +11,8 @@ pollInterval: 10
 strikeRadius: 6
 
 # The knock back of the lightning strike
-# default: 2.5
-strikeKnockBack: 2.5
+# default: 1.3
+strikeKnockBack: 1.3
 
 # Whether to play the actual lightning effect
 # default: true

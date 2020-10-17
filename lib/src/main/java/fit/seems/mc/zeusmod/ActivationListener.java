@@ -14,7 +14,6 @@ import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
-import org.bukkit.GameMode;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class ActivationListener implements Listener {
