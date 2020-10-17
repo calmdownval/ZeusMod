@@ -95,8 +95,8 @@ public class InteractionListener implements Listener {
 		int passableLength = MIN_PASSABLE_BETWEEN;
 		int targetOffset = -1;
 		boolean foundObstacle = false;
-		Location oldLocation = actor.getEyeLocation();
-		Vector position = oldLocation.toVector();
+		Location oldLocation = actor.getLocation();
+		Vector position = actor.getEyeLocation().toVector();
 		Vector direction = oldLocation.getDirection();
 		World world = actor.getWorld();
 
@@ -127,13 +127,12 @@ public class InteractionListener implements Listener {
 		}
 
 		// measure distance to the new location
-		Location newLocation = targetOffset == -1
-			? oldLocation
-			: oldLocation
+		Location newLocation = oldLocation.clone();
+		if (targetOffset != -1) {
+			newLocation.add(direction
 				.clone()
-				.add(direction
-					.clone()
-					.multiply(targetOffset));
+				.multiply(targetOffset));
+		}
 
 		double distance = oldLocation.clone().subtract(newLocation).length();
 		if (targetOffset == -1 || (distance < minDistance && !foundObstacle)) {
