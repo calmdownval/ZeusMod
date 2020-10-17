@@ -82,7 +82,6 @@ public class InteractionListener implements Listener {
 				break;
 
 			case RIGHT_CLICK_AIR:
-			case RIGHT_CLICK_BLOCK:
 				if (player.hasPermission(ZeusModPlugin.P_BLINK)) {
 					blink(player);
 				}
