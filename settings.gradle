@@ -1,0 +1,2 @@
+rootProject.name = 'fit.seems.mc.zeusmod'
+include('lib')

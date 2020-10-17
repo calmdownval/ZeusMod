@@ -1,0 +1,34 @@
+name: ZeusMod
+main: fit.seems.mc.zeusmod.ZeusModPlugin
+version: 2.0.0
+api-version: 1.16
+commands:
+  zeus:
+    description: change ZeusMod fly and run speed presets
+    permission: zeusmod.use
+    usage: |
+      /<command> fly <speed> - set fly speed boost 0-100
+      /<command> run <speed> - set run speed boost 0-100
+      /<command> sunny - toggle fake sunny weather
+      /<command> reset - reset to defaults
+permissions:
+  zeusmod.*:
+    description: grants access to all ZeusMod functions
+    children:
+      zeusmod.use: true
+      zeusmod.blink: true
+      zeusmod.fly: true
+      zeusmod.strike: true
+      zeusmod.strike.players: true
+  zeusmod.use:
+    description: allows fast running and the basic use of ZeusMod
+  zeusmod.blink:
+    description: allows blinking forward and through structures
+  zeusmod.fly:
+    description: allows flight when Zeus mode is active
+  zeusmod.strike:
+    description: allows inflicting the instant-kill strike
+  zeusmod.strike.players:
+    description: allows inflicting the instant-kill strike, including players
+    children:
+      zeusmod.strike: true

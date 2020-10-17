@@ -1,0 +1,30 @@
+# Activation item, should not be a placeable block
+# default: GOLD_SWORD
+control:
+  ==: org.bukkit.inventory.ItemStack
+  type: GOLD_SWORD
+  amount: 1
+
+# How many ticks to wait between polling updates
+# default: 10
+pollInterval: 10
+
+# The radius of the lightning strike
+# default: 6
+strikeRadius: 6
+
+# The knock back of the lightning strike
+# default: 2.5
+strikeKnockBack: 2.5
+
+# Whether to play the actual lightning effect
+# default: true
+strikeLightning: true
+
+# The minimum distance to travel with each blink
+# default: 10
+minBlinkDistance: 10
+
+# The maximum distance to travel with each blink
+# default: 50
+maxBlinkDistance: 50
