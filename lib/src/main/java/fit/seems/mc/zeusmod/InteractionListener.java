@@ -1,19 +1,18 @@
 package fit.seems.mc.zeusmod;
 
 import java.util.Collections;
-import java.util.function.Predicate;
 import java.util.HashSet;
-import java.util.List;
+
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Player;
-import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByBlockEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -40,6 +39,13 @@ public class InteractionListener implements Listener {
 	public InteractionListener(ZeusModPlugin plugin) {
 		this.plugin = plugin;
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
+	}
+
+	@EventHandler
+	public void onPlayerItemDamageEvent(PlayerItemDamageEvent event) {
+		if (event.getItem().getType().equals(plugin.getControlItemType()) && plugin.verify((event.getPlayer()))) {
+			event.setCancelled(true);
+		}
 	}
 
 	@EventHandler
