@@ -1,7 +1,6 @@
 package fit.seems.mc.zeusmod;
 
 import java.util.Collections;
-import java.util.HashSet;
 
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
@@ -15,7 +14,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
@@ -24,17 +22,9 @@ import org.bukkit.util.Vector;
 import org.bukkit.World;
 
 public class InteractionListener implements Listener {
-	private final ZeusModPlugin plugin;
-
 	private static final int MIN_PASSABLE_BETWEEN = 2;
-	private static final HashSet<Material> TRANSPARENT = new HashSet<Material>();
-	static {
-		TRANSPARENT.add(Material.AIR);
-		TRANSPARENT.add(Material.WATER);
-		TRANSPARENT.add(Material.GRASS);
-		TRANSPARENT.add(Material.LAVA);
-		TRANSPARENT.add(Material.FIRE);
-	}
+
+	private final ZeusModPlugin plugin;
 
 	public InteractionListener(ZeusModPlugin plugin) {
 		this.plugin = plugin;
@@ -86,6 +76,12 @@ public class InteractionListener implements Listener {
 					strikeArea(player);
 				}
 				break;
+
+			case RIGHT_CLICK_BLOCK:
+				if (MaterialList.RIGHT_CLICKABLE.contains(event.getClickedBlock().getType())) {
+					break;
+				}
+				// fall through
 
 			case RIGHT_CLICK_AIR:
 				if (player.hasPermission(ZeusModPlugin.P_BLINK)) {
@@ -164,8 +160,8 @@ public class InteractionListener implements Listener {
 			return;
 		}
 
-		Block targetBlock = actor.getTargetBlock(TRANSPARENT, 69); // haha funny number
-		if (TRANSPARENT.contains(targetBlock.getType())) {
+		Block targetBlock = actor.getTargetBlock(MaterialList.TRANSPARENT, 69); // haha funny number
+		if (MaterialList.TRANSPARENT.contains(targetBlock.getType())) {
 			return;
 		}
 
