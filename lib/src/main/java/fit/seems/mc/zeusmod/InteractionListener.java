@@ -65,7 +65,8 @@ public class InteractionListener implements Listener {
 
 	@EventHandler
 	public void onPlayerInteractEvent(PlayerInteractEvent event) {
-		if (!event.getHand().equals(EquipmentSlot.HAND)) {
+		EquipmentSlot hand = event.getHand();
+		if (hand == null || !hand.equals(EquipmentSlot.HAND)) {
 			return;
 		}
 
