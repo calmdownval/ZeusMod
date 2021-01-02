@@ -133,7 +133,6 @@ public class PlayerPreset {
 	}
 
 	private void restoreDefaults() {
-		originalAllowFlight = false;
 		originalFlySpeed = 0.2F;
 		originalRunSpeed = 0.2F;
 		flySpeedModifier = 0.25F;
